@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,8 +46,6 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/tool/ws">ChatRoom</a></li>
-                <li><a href="JavaScript:void(0);" id='black1'>夜间模式</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">测试工具 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -115,24 +110,6 @@
     </div>
 
 </nav>
-<script>
-    $("#black1").click(function(){
-        var s = $(this).html();
-        if (s=="夜间模式") {
-            $('body').css("background-color","black");
-            $('body').css("opacity","0.7")
-            $('body').css("-moz-opacity","0.7")
-            $('body').css("filter","alpha(opacity=50)")
-            $(this).html('白天模式');
-        }else{
-            $('body').css("background-color","");
-            $('body').css("opacity","")
-            $('body').css("-moz-opacity","")
-            $('body').css("filter","")
-            $(this).html('夜间模式');
-        }
-    });
-</script>
 
 <div class="container">
 
