@@ -1,0 +1,405 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>在线websocket测试在线工具-postjson</title>
+    <meta name="robots" content="all" />
+    <meta name="keywords" content="在线,websocket,测试工具" />
+    <meta name="description" content="在线,websocket,测试工具" />
+
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <script src="static/js/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="static/css/offcanvas.css">
+
+</head>
+
+<style>
+    .navbar-brand,.navbar-nav>li>a{
+        color:#fdfdfd!important;
+    }
+    .navbar-nav>li>a:hover{
+        color:#ff8839!important;
+    }
+    .mydisul li{
+        line-height:30px;
+        margin-top:10px
+    }
+</style>
+<body >
+
+<nav class="navbar navbar-fixed-top navbar-inverse" style='background-color:#2f3b53;'>
+    <div class="container" style='width:100%'>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">PostJson</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/tool/ws">ChatRoom</a></li>
+                <li><a href="JavaScript:void(0);" id='black1'>夜间模式</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">测试工具 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/tool/gp">在线post请求</a></li>
+                        <li><a href="/tool/post">新版在线post请求</a></li>
+                        <li><a href="/tool/testing">接口压力测试</a></li>
+                        <li><a href="/tool/port">端口检测</a></li>
+                        <li><a href="/tool/chattest">在线websocket测试工具</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">JSON相关 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <li><a href="/tool/json">JSON格式化和还原</a></li>
+
+                        <li><a href="/tool/jsonedit">json编辑</a></li>
+
+                        <li><a href="/tool/jurl">json转url参数</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">加密,解码,转换 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <li><a href="/tool/ud">urlencode与urldecode转换</a></li>
+
+                        <li><a href="/tool/ud">base64_encode与base64_decode转换</a></li>
+
+                        <li><a href="/tool/ud">md5加密</a></li>
+
+                        <li><a href="/tool/ud">sha1,sha256,sha512</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">其他工具 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/tool/duibi">两列对比出差异</a></li>
+                        <li><a href="/tool/unix">时间戳转换</a></li>
+                        <li><a href="/tool/rd">随机字符串或密码生成</a></li>
+                        <li><a href="/tool/nslook">在线nslook</a></li>
+                        <li><a href="/tool/bimg">在线图片base64编码</a></li>
+                        <li><a href="/tool/imgtob">base64信息转图片</a></li>
+                        <li><a href="/tool/imgtob">base64信息转图片</a></li>
+                        <li><a href="/tool/ff">在线格式化sql,html,json</a></li>
+                        <li><a href="/tool/md">在线markdown</a></li>
+                        <li><a href="/tool/hzp">汉字转拼音</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            <div style="float:right">
+
+            </div>
+        </div>
+
+    </div>
+
+</nav>
+<script>
+    $("#black1").click(function(){
+        var s = $(this).html();
+        if (s=="夜间模式") {
+            $('body').css("background-color","black");
+            $('body').css("opacity","0.7")
+            $('body').css("-moz-opacity","0.7")
+            $('body').css("filter","alpha(opacity=50)")
+            $(this).html('白天模式');
+        }else{
+            $('body').css("background-color","");
+            $('body').css("opacity","")
+            $('body').css("-moz-opacity","")
+            $('body').css("filter","")
+            $(this).html('夜间模式');
+        }
+    });
+</script>
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right main-contain">
+
+        <div class="col-xs-12 col-sm-9">
+
+            <style>
+                .newmessage{
+                    width:100%;
+                }
+                .bubble{
+                    background-color:lightgreen
+                    position: relative;
+                    max-width: 240px;
+                    word-wrap: break-word;
+                    text-align: left;
+                    margin-left: 16px;
+                    margin-right: 16px;
+
+                    border-radius: 9px;
+                }
+
+                .bubble:after{
+                    position: absolute;
+                    border: 4.8px solid transparent;
+                    content: " ";
+                    top: 20px;
+                }
+
+            </style>
+
+            <h2></h2>
+
+            <div style="">
+
+                <div>
+                    <input type='text' value='ws://123.207.167.163:9010/ajaxchattest' class="form-control" style='width:390px;display:inline'id='wsaddr'/>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" onclick='addsocket();'>连接</button>
+                        <button type="button" class="btn btn-default" onclick='closesocket();'>断开</button>
+                        <button type="button" class="btn btn-default" onclick='$("#wsaddr").val("")'>清空</button>
+                        <button type="button" class="btn btn-default" onclick='$("#wsaddr").val("ws://localhost:9010/ajaxchattest")'>示例</button>
+                    </div>
+                    <div style='margin-top:10px;margin-button:10px'>
+<pre>本工具主要是为了测试服务端websocket功能是否完善可用而开发，主要是利用html5 的websocket去连接服务端的websocket,因此，
+无论你是内网还是外网都可使用!服务端只是实现了接受和发送，这里只是测试而已！</pre>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div id="output" style="border:1px solid #ccc;height:365px;overflow: auto;margin-left:15px"></div>
+                    <div class="col-lg-6">
+
+                        <div class="input-group" style=''>
+                            <input type="text"id='message'  class="form-control" style='width:810px' placeholder="待发信息" onkeydown="en(event);">
+                            <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="doSend();">发送</button>
+      </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script language="javascript"type="text/javascript">
+                function   formatDate(now)   {
+                    var   year=now.getFullYear();
+                    var   month=now.getMonth()+1;
+                    var   date=now.getDate();
+                    var   hour=now.getHours();
+                    var   minute=now.getMinutes();
+                    var   second=now.getSeconds();
+                    return   year+"-"+(month=month<10?("0"+month):month)+"-"+(date=date<10?("0"+date):date)+" "+(hour=hour<10?("0"+hour):hour)+":"+(minute=minute<10?("0"+minute):minute)+":"+(second=second<10?("0"+second):second);
+                }
+                var output;
+                var websocket;
+                function init() {
+                    output = document.getElementById("output");
+                    testWebSocket();
+                }
+
+                function addsocket() {
+                    var wsaddr = $("#wsaddr").val();
+                    if (wsaddr=='') {
+                        alert("请填写websocket的地址");
+                        return false;
+                    }
+                    StartWebSocket(wsaddr);
+                }
+
+                function closesocket() {
+                    websocket.close();
+                }
+
+                function StartWebSocket(wsUri) {
+                    websocket = new WebSocket(wsUri);
+                    websocket.onopen = function(evt) { onOpen(evt) };
+                    websocket.onclose = function(evt) { onClose(evt) };
+                    websocket.onmessage = function(evt) { onMessage(evt) };
+                    websocket.onerror = function(evt) { onError(evt) }; }
+
+                function onOpen(evt) {
+                    writeToScreen("<span style='color:red'>连接成功，现在你可以发送信息啦！！！</span>");
+                }
+                function onClose(evt) {
+                    writeToScreen("<span style='color:red'>websocket连接已断开!!!</span>");
+                    websocket.close();
+                }
+                function onMessage(evt) {
+                    writeToScreen('<span style="color:blue">服务端回应&nbsp;'+formatDate(new Date())+'</span><br/><span class="bubble">'+ evt.data+'</span>');
+                }
+                function onError(evt) {
+                    writeToScreen('<span style="color: red;">发生错误:</span> '+ evt.data);
+                }
+                function doSend() {
+                    var message=$("#message").val();
+                    if (message=='') {
+                        alert("请先填写发送信息");
+                        $("#message").focus();
+                        return false;
+                    }
+                    if (typeof websocket==="undefined"){
+                        alert("websocket还没有连接，或者连接失败，请检测");
+                        return false;
+                    }
+                    if (websocket.readyState==3) {
+                        alert("websocket已经关闭，请重新连接");
+                        return false;
+                    }
+                    console.log(websocket);
+                    $("#message").val('');
+                    writeToScreen('<span style="color:green">你发送的信息&nbsp;'+formatDate(new Date())+'</span><br/>'+ message);
+                    websocket.send(message);
+                }
+
+                function writeToScreen(message) {
+                    var div = "<div class='newmessage'>"+message+"</div>";
+                    var d = $("#output");
+                    var d=d[0];
+                    var doScroll = d.scrollTop == d.scrollHeight - d.clientHeight;
+                    $("#output").append(div);
+                    if (doScroll) {
+                        d.scrollTop = d.scrollHeight - d.clientHeight;
+                    }
+                }
+
+                function en(event){
+                    var evt=evt?evt:(window.event?window.event:null);
+                    if (evt.keyCode==13){
+                        doSend()
+                    }
+                }
+
+            </script>
+
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <div class="list-group" id='ajaxside'>
+                <a href="/tool/gp" class="list-group-item">在线POST和GET</a>
+                <a href="/tool/duibi" style='color:red' class="list-group-item sideclass">两列对比出不同的行</a>
+                <a href="/tool/post" class="list-group-item">新版在线POST和GET</a>
+                <a href="/tool/chattest" class="list-group-item sideclass">在线websocket测试工具</a>
+                <a href="/tool/testing" class="list-group-item sideclass">API接口压力测试</a>
+                <a href="/tool/md" class="list-group-item sideclass">markdown在线编辑</a>
+                <a href="/tool/ff" class="list-group-item sideclass">sql\html\xml美化</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="static/js/bootstrap.min.js"></script>
+
+<script src="static/js/offcanvas.js"></script>
+
+<script>
+    try{
+        top.location.hostname;
+        if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+    }
+    catch(e){
+        top.location.href = window.location.href;
+    }
+</script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-75491253-1');
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#newpayup").click(function () {
+            $("#payup").show();
+        });
+        $("#payup").click(function () {
+            $(this).hide();
+        });
+    });
+</script>
+<style>
+    .payup {
+        display: none;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 6666
+    }
+
+    .postpay {
+        position: relative;
+        float: right;
+    }
+
+    .postpay button {
+        color: yellow;
+        width: 68px;
+        height: 50px;
+        word-wrap: break-word;
+        background-color: hsl(340, 100%, 75%);
+        box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, hsl(340, 70%, 50%) 0 .1em 3px, hsl(340, 80%, 40%) 0 .3em 1px, rgba(0, 0, 0, 0.2) 0 .5em 5px;
+        border: none;
+        padding-right: 1.2em;
+        padding-left: 0.8em;
+        border-radius: 3em 1em / 5em 1em;
+    }
+
+    .payupimg {
+        width: 680px;
+        height: 390px;
+        margin: 0 auto;
+        position: relative;
+        top: 256px;
+        z-index: 9999;
+        background: white;
+    }
+
+    .payup img {
+        float: left;
+        width: 280px;
+        height: 280px;
+        margin:30px 30px 30px 30px;
+    }
+
+    .imgtext {
+        width: 330px;
+        display: inline-block;
+        text-align: center;
+        font-size: 20px;
+        font-weight: blod;
+    }
+</style>
+<div style='height:60px;border-top: 1px solid #ccc;margin-top:20px;box-shadow:0px 0px  10px 5px #aaa;'>
+    <div style='text-align:center;margin-top:10px'>
+        <div>京ICP备16061460号-3</div>
+        <div><a href='/map'>网站地图</a></div>
+    </div>
+
+</div>
+
+</body>
+</html>
