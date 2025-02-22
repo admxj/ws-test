@@ -1,20 +1,21 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<script setup></script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div style="width: 100%">
+    <header style="width: 50%">
+      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+      <div class="wrapper">
+        <nav>
+          <RouterLink to="/">Go to Home</RouterLink>
+          <RouterLink to="/hello">Go to Hello</RouterLink>
+        </nav>
+      </div>
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <main>
+      <RouterView />
+    </main>
+  </div>
 </template>
 
 <style scoped>
