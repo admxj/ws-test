@@ -1,10 +1,11 @@
 import {createRouter, createWebHistory} from 'vue-router'
-
-import TheWelcome from './components/TheWelcome.vue'
+import WebSocket from './page/WebSocket.vue'
+import ToolUnix from './page/ToolUnix.vue'
 import HelloWorld from './components/HelloWorld.vue'
 
 const routes = [
-    { path: '/', component: TheWelcome },
+    { path: '/', component: WebSocket },
+    { path: '/tool/unix', component: ToolUnix },
     { path: '/hello', component: HelloWorld },
 ]
 
