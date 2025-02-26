@@ -59,7 +59,11 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">其他工具 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/tool/duibi">两列对比出差异</a></li>
-                <li><a href="/tool/unix">时间戳转换</a></li>
+                <li>
+                  <router-link to="/tool/unix">
+                    时间戳转换
+                  </router-link>
+                </li>
                 <li><a href="/tool/rd">随机字符串或密码生成</a></li>
                 <li><a href="/tool/nslook">在线nslook</a></li>
                 <li><a href="/tool/bimg">在线图片base64编码</a></li>

@@ -566,81 +566,6 @@
           </div>
         </div>
 
-        <!--    </div>-->
-
-        <div class="col-xs-6 col-sm-4 sidebar-offcanvas" id="sidebar">
-
-          <ul class='leftul'>
-            <ins class="adsbygoogle" style="display:block;height:91px" data-ad-client="ca-pub-0889970608150005"
-                 data-ad-slot="6786842653" data-full-width-responsive="true"></ins>
-
-            <li class='leftulli'>
-              <span style='font-weight:bold'>网络 </span>
-              <ul class='siteleadul'>
-                <li><a href="/tool/dns">常用DNS</a></li>
-                <li><a href="/tool/useragent">useragent</a></li>
-              </ul>
-            </li>
-            <div style='clear:both'></div>
-
-            <li class='leftulli'>
-              <span style='font-weight:bold'>其他工具 </span>
-              <ul class='siteleadul'>
-
-
-                <li><a style='color:red' href="/tool/duibi">
-                  两列对比差异</a></li>
-
-
-                <li><a href="/tool/unix">
-                  时间戳转换</a></li>
-
-
-                <li><a href="/tool/rd">
-                  随机字符串或密码生成</a></li>
-
-
-                <li><a href="/tool/nslook">
-                  在线nslookup</a></li>
-
-
-                <li><a href="/tool/bimg">
-                  图片base64转码</a></li>
-
-
-                <li><a href="/tool/imgtob">
-                  图片base64转码</a></li>
-
-
-                <li><a href="/tool/imgtob">
-                  base64转成图片</a></li>
-
-
-                <li><a href="/tool/md">
-                  markdown在线编辑</a></li>
-
-
-                <li><a href="/tool/hzp">
-                  汉字转拼音</a></li>
-
-
-                <li><a href="/tool/fenci">
-                  在线汉语分词</a></li>
-
-
-                <li><a href="/run">
-                  代理在线代码运行</a></li>
-
-              </ul>
-
-            </li>
-            <div style='clear:both'></div>
-            <li class='leftulli' style='height:auto;width:270px;border:none'>
-              <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0889970608150005"
-                   data-ad-slot="5090916759" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
 
@@ -648,11 +573,11 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import {onMounted} from 'vue'
 
 import moment from "moment";
 
-onMounted(()=>{
+onMounted(() => {
   $("#otime").val(parseInt(new Date().getTime() / 1000));
   $("#beic_time").val(formatDate(new Date()));
   $("#changetime").click(function () {
@@ -663,7 +588,7 @@ onMounted(()=>{
       return false;
     }
     console.log(otime)
-    if(!parseInt(otime)){
+    if (!parseInt(otime)) {
       alert("时间戳只能为数字");
       $("#otime").focus();
       return false;

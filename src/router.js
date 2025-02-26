@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 import WebSocket from './page/WebSocket.vue'
 import ToolUnix from './page/ToolUnix.vue'
 import HelloWorld from './components/HelloWorld.vue'
@@ -10,7 +10,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory('ws-test'),
+    history: createWebHashHistory('/ws-test'),
     routes,
 })
 
